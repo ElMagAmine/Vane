@@ -53,7 +53,7 @@ function fetchInChild(env, urls) {
     child.stdout.on('data', (data) => (stdout += data));
     child.stderr.on('data', (data) => (stderr += data));
     child.on('error', reject);
-    child.on('exit', (code) => {
+    child.on('close', (code) => {
       if (code !== 0)
         reject(new Error(`fetch process exited ${code}: ${stderr}`));
       else {
